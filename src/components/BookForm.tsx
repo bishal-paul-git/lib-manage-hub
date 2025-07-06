@@ -24,6 +24,9 @@ export const BookForm = ({ book, onClose }: BookFormProps) => {
     publishedDate: book?.publishedDate || "",
     isbn: book?.isbn || "",
     availableCopies: book?.availableCopies || 1,
+    totalCopies: book?.totalCopies || 1,
+    genre: book?.genre || "",
+    description: book?.description || "",
   });
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -104,6 +107,16 @@ export const BookForm = ({ book, onClose }: BookFormProps) => {
           </div>
 
           <div>
+            <Label htmlFor="genre">Genre</Label>
+            <Input
+              id="genre"
+              value={formData.genre}
+              onChange={(e) => setFormData(prev => ({ ...prev, genre: e.target.value }))}
+              placeholder="Fiction, Non-fiction, etc."
+            />
+          </div>
+
+          <div>
             <Label htmlFor="publishedDate">Published Date</Label>
             <Input
               id="publishedDate"
@@ -113,14 +126,38 @@ export const BookForm = ({ book, onClose }: BookFormProps) => {
             />
           </div>
 
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <Label htmlFor="totalCopies">Total Copies</Label>
+              <Input
+                id="totalCopies"
+                type="number"
+                min="1"
+                value={formData.totalCopies}
+                onChange={(e) => setFormData(prev => ({ ...prev, totalCopies: parseInt(e.target.value) || 1 }))}
+              />
+            </div>
+            <div>
+              <Label htmlFor="copies">Available Copies</Label>
+              <Input
+                id="copies"
+                type="number"
+                min="0"
+                max={formData.totalCopies}
+                value={formData.availableCopies}
+                onChange={(e) => setFormData(prev => ({ ...prev, availableCopies: parseInt(e.target.value) || 0 }))}
+              />
+            </div>
+          </div>
+
           <div>
-            <Label htmlFor="copies">Available Copies</Label>
-            <Input
-              id="copies"
-              type="number"
-              min="0"
-              value={formData.availableCopies}
-              onChange={(e) => setFormData(prev => ({ ...prev, availableCopies: parseInt(e.target.value) || 0 }))}
+            <Label htmlFor="description">Description</Label>
+            <Textarea
+              id="description"
+              value={formData.description}
+              onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
+              placeholder="Brief description of the book"
+              rows={3}
             />
           </div>
 

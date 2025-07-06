@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { useLibraryData, User } from "@/hooks/useLibraryData";
 import { useToast } from "@/hooks/use-toast";
@@ -20,6 +21,7 @@ export const UserForm = ({ user, onClose }: UserFormProps) => {
     username: user?.username || "",
     email: user?.email || "",
     borrowedBooks: user?.borrowedBooks || [],
+    membershipType: user?.membershipType || 'basic' as 'basic' | 'premium',
   });
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -90,6 +92,22 @@ export const UserForm = ({ user, onClose }: UserFormProps) => {
               placeholder="Enter email address"
               required
             />
+          </div>
+
+          <div>
+            <Label htmlFor="membershipType">Membership Type</Label>
+            <Select
+              value={formData.membershipType}
+              onValueChange={(value: 'basic' | 'premium') => setFormData(prev => ({ ...prev, membershipType: value }))}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="Select membership type" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="basic">Basic</SelectItem>
+                <SelectItem value="premium">Premium</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
 
           <div className="flex justify-end space-x-2 pt-4">

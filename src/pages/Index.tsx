@@ -1,11 +1,36 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import { useState } from "react";
+import { Sidebar } from "@/components/Sidebar";
+import { Dashboard } from "@/components/Dashboard";
+import { BooksManager } from "@/components/BooksManager";
+import { AuthorsManager } from "@/components/AuthorsManager";
+import { UsersManager } from "@/components/UsersManager";
 
 const Index = () => {
+  const [activeTab, setActiveTab] = useState("dashboard");
+
+  const renderContent = () => {
+    switch (activeTab) {
+      case "dashboard":
+        return <Dashboard />;
+      case "books":
+        return <BooksManager />;
+      case "authors":
+        return <AuthorsManager />;
+      case "users":
+        return <UsersManager />;
+      default:
+        return <Dashboard />;
+    }
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
+    <div className="flex h-screen bg-slate-50">
+      <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
+      <div className="flex-1 overflow-auto">
+        <div className="p-6">
+          {renderContent()}
+        </div>
       </div>
     </div>
   );

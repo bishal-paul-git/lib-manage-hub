@@ -5,6 +5,7 @@ import { Dashboard } from "@/components/Dashboard";
 import { BooksManager } from "@/components/BooksManager";
 import { AuthorsManager } from "@/components/AuthorsManager";
 import { UsersManager } from "@/components/UsersManager";
+import { BorrowingManager } from "@/components/BorrowingManager";
 
 const Index = () => {
   const [activeTab, setActiveTab] = useState("dashboard");
@@ -19,6 +20,8 @@ const Index = () => {
         return <AuthorsManager />;
       case "users":
         return <UsersManager />;
+      case "borrowing":
+        return <BorrowingManager />;
       default:
         return <Dashboard />;
     }

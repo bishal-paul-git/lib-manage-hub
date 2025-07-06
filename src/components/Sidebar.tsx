@@ -1,5 +1,5 @@
 
-import { Book, Users, UserCheck, BarChart3 } from "lucide-react";
+import { Book, Users, UserCheck, BarChart3, BookOpen } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface SidebarProps {
@@ -13,6 +13,7 @@ export const Sidebar = ({ activeTab, setActiveTab }: SidebarProps) => {
     { id: "books", label: "Books", icon: Book },
     { id: "authors", label: "Authors", icon: UserCheck },
     { id: "users", label: "Users", icon: Users },
+    { id: "borrowing", label: "Borrowing", icon: BookOpen },
   ];
 
   return (

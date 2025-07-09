@@ -12,16 +12,24 @@ export const Sidebar = ({ activeTab, setActiveTab }: SidebarProps) => {
     { id: "dashboard", label: "Dashboard", icon: BarChart3 },
     { id: "books", label: "Books", icon: Book },
     { id: "authors", label: "Authors", icon: UserCheck },
-    { id: "users", label: "Users", icon: Users },
-    { id: "borrowing", label: "Borrowing", icon: BookOpen },
+    { id: "users", label: "Students", icon: Users },
+    { id: "borrowing", label: "Issue/Return", icon: BookOpen },
   ];
 
   return (
     <div className="w-64 bg-gradient-to-b from-amber-900 to-amber-800 shadow-lg">
       <div className="p-6">
-        <h1 className="text-2xl font-bold text-amber-100 mb-8">
-          Library Manager
-        </h1>
+        <div className="text-center mb-8">
+          <h1 className="text-xl font-bold text-amber-100 mb-1">
+            SIU Library
+          </h1>
+          <h2 className="text-lg font-semibold text-amber-200 mb-1">
+            Management System
+          </h2>
+          <p className="text-xs text-amber-300">
+            Sylhet International University
+          </p>
+        </div>
         <nav className="space-y-2">
           {menuItems.map((item) => {
             const Icon = item.icon;
